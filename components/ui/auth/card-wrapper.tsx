@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../card"
 import Header from "./header"
 import Socials from "./socials"
+import { BackButton } from "./back-button"
 
 interface CardwrapperProps {
   children: React.ReactNode
@@ -18,11 +19,10 @@ const CardWrapper = ({
   backButtonLabel,
   showSocials,
 }: CardwrapperProps) => {
-  //   const router = useRouter()
   return (
     <Card className="w-[400px] shadow-md">
       <CardHeader>
-        <Header label="Login to use all the featr" />
+        <Header label={headerLabel} />
       </CardHeader>
       <CardContent>{children}</CardContent>
       {showSocials && (
@@ -30,6 +30,9 @@ const CardWrapper = ({
           <Socials />
         </CardFooter>
       )}
+      <CardFooter>
+        <BackButton label={backButtonLabel} href={backButtonHref}></BackButton>
+      </CardFooter>
     </Card>
   )
 }
