@@ -1,6 +1,5 @@
 "use client"
-
-import { login } from "@/actions/login"
+import { register } from "@/actions/register"
 import CardWrapper from "./card-wrapper"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -40,7 +39,7 @@ const RegisterForm = () => {
     setError("")
     setSuccess("")
     startTransition(() => {
-      login(values).then((data) => {
+      register(values).then((data) => {
         setError(data.error)
         setSuccess(data.success)
       })
@@ -48,9 +47,9 @@ const RegisterForm = () => {
   }
   return (
     <CardWrapper
-      headerLabel="Welcome Back"
-      backButtonHref="/auth/register"
-      backButtonLabel="Dont't have am account?"
+      headerLabel="Create an Account"
+      backButtonHref="/auth/login"
+      backButtonLabel="Already have an account?"
       showSocials
     >
       <Form {...form}>
@@ -111,9 +110,9 @@ const RegisterForm = () => {
               )}
             />
           </div>
-          <FormSuccess />
+          <FormSuccess message="" />
 
-          <FormError />
+          <FormError message="" />
 
           <Button className="w-full font-semibold" type="submit">
             Sign Up
